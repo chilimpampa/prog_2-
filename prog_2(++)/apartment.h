@@ -11,8 +11,8 @@ namespace apartment {
 
 	public:
 		Owner(const std::string& fio, std::string& name);
-		std::string GetFIO() const;
-		std::string GetNAME() const;
+		std::string GetFIO_OWNER() const;
+		std::string GetNAME_OWNER() const;
 	};
 
 	class Flat {
@@ -25,6 +25,17 @@ namespace apartment {
 		Flat(const Owner& owner, int num);
 		int GetNUM() const;
 		std::string GetNAME() const;
+	};
+
+	class Concierge {
+	private:
+		std::string fio;
+		std::string name;
+
+	public:
+		Concierge(const std::string& fio, std::string& name);
+		std::string GetFIO_CONCIERGE() const;
+		std::string GetNAME_CONCIERGE() const;
 	};
 
 
