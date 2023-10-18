@@ -15,6 +15,17 @@ namespace apartment {
 		std::string GetNAME() const;
 	};
 
+	class Flat {
+	private:
+		int num;
+		std::string owner_fio_name;
+
+	public:
+		Flat(const std::string& owner_fio_name, int num);
+		Flat(const Owner& owner, int num);
+		int GetNUM() const;
+		std::string GetNAME() const;
+	};
 
 
 }
