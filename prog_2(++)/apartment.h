@@ -66,5 +66,37 @@ namespace apartment {
 		int GetNUM_HOUSE() const;
 		std::string GetDOORWAY() const;
 	};
+
+	class ApartmentDataBase {
+		ApartmentDataBase();
+		~ApartmentDataBase();
+
+		void AddOwner(const Owner& owner);
+		void AddFlat(const Flat& flat);
+		void AddConcierge(const Concierge& concierge);
+		void AddDoorway(const Doorway& doorway);
+		void AddHouse(const House& house);
+
+		void PrintOwnerList() const;
+		void PrintFlatList() const;
+		void PrintConciergeList() const;
+		void PrintDoorwayList() const;
+		void PrintHouseList() const;
+		Owner InputOwnerFromUser();
+		Flat InputFlatFromUser();
+		Concierge InputConciergeFromUser();
+		Doorway InputDoorwayFromUser();
+		House InputHouseFromUser();
+
+	private:
+		bool IsInteger(const std::string& str) const;
+
+	private:
+		std::vector<Owner> owners;
+		std::vector<Flat> flats;
+		std::vector<Concierge> concierges;
+		std::vector<Doorway> doorways;
+		std::vector<House> houses;
+	};
 }
 
