@@ -18,22 +18,23 @@ namespace apartment {
 	class Flat {
 	private:
 		int num_flat;
-		std::string owner_fio_name;
+		int kol_rooms;
+		int square;
 
 	public:
-		Flat(const std::string& owner_fio_name, int num_flat);
-		Flat(const Owner& owner, int num_flat);
+		Flat(const int num_flat, int kol_rooms, int square);
 		int GetNUM_FLAT() const;
-		std::string GetNAME_OWNER() const;
+		int GetKOL_ROOMS() const;
+		int GetSQUARE() const;
 	};
 
 	class Concierge {
 	private:
-		std::string fio;
-		std::string name;
+		std::string concierge_fio;
+		std::string concierge_name;
 
 	public:
-		Concierge(const std::string& fio, std::string& name);
+		Concierge(const std::string& concierge_fio, std::string& concierge_name);
 		std::string GetFIO_CONCIERGE() const;
 		std::string GetNAME_CONCIERGE() const;
 	};
@@ -42,32 +43,27 @@ namespace apartment {
 	private:
 		int kol_flat;
 		int num_doorway;
-		std::string flat;
-		std::string concierge;
 
 	public:
-		Doorway(const std::string& flat, std::string& concierge, int kol_flat, int num_doorway);
-		Doorway(const Flat* flat, const Concierge* concierge, int kol_flat, int num_doorway);
+		Doorway(const int kol_flat, int num_doorway);
 		int GetKOl_FLAT() const;
 		int GetNUM_DOORWAY() const;
-		std::string GetFLAT() const;
-		std::string GetCONCIERGE() const;
 	};
 
 	class House {
+	private:
 		int num_house;
 		int kol_rezidents;
-		std::string doorway;
 
 	public:
-		House(const std::string& doorway, int num_house, int kol_rezidents);
-		House(const Doorway* doorway, int num_house, int kol_rezidents);
+		House(const int num_house, int kol_rezidents);
 		int GetKOL_REZIDENTS() const;
 		int GetNUM_HOUSE() const;
-		std::string GetDOORWAY() const;
 	};
 
+
 	class ApartmentDataBase {
+	public:
 		ApartmentDataBase();
 		~ApartmentDataBase();
 
