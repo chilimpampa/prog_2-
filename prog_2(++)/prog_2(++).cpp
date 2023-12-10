@@ -18,8 +18,12 @@ namespace apartment {
 	}
 
 
-	Flat::Flat(const int num_flat, int kol_rooms, int square)
-		: num_flat(num_flat), kol_rooms(kol_rooms), square(square) {}
+	Flat::Flat(const std::string& street, int num_flat, int kol_rooms, int square)
+		: street(street), num_flat(num_flat), kol_rooms(kol_rooms), square(square) {}
+
+	std::string Flat::GetSTREET() const {
+		return street;
+	}
 
 	int Flat::GetNUM_FLAT() const {
 		return num_flat;
@@ -57,8 +61,15 @@ namespace apartment {
 		return kol_flat;
 	}
 
-	House::House(const int num_house, int kol_rezidents)
-		: num_house(num_house), kol_rezidents(kol_rezidents) {}
+	House::House(const std::string& street, int num_house, int kol_rezidents)
+		: street(street), num_house(num_house), kol_rezidents(kol_rezidents) {}
+
+	House::House(const Flat& flat, int num_house, int kol_rezidents)
+		: street(flat.GetSTREET()), num_house(num_house), kol_rezidents(kol_rezidents) {}
+
+	std::string House::GetSTREET() const {
+		return street;
+	}
 
 	int House::GetNUM_HOUSE() const {
 		return num_house;
@@ -118,6 +129,7 @@ namespace apartment {
 			std::cout << "          Данные о квартире" << std::endl;
 			std::cout << "-----------------------------------------" << std::endl;
 			for (const Flat& flat : flats) {
+				std::cout << "Адрес квартиры: " << flat.GetSTREET() << std::endl;
 				std::cout << "Номер квартиры: " << flat.GetNUM_FLAT() << std::endl;
 				std::cout << "Кол-во комнат: " << flat.GetKOL_ROOMS() << std::endl;
 				std::cout << "Площадь квартиры (кв. м): " << flat.GetSQUARE() << std::endl;
@@ -165,6 +177,7 @@ namespace apartment {
 			std::cout << "          Данные о доме" << std::endl;
 			std::cout << "-----------------------------------------" << std::endl;
 			for (const House& house : houses) {
+				std::cout << "Название улицы: " << house.GetSTREET() << std::endl;
 				std::cout << "Номер дома: " << house.GetNUM_HOUSE() << std::endl;
 				std::cout << "Кол-во жильцов: " << house.GetKOL_REZIDENTS() << std::endl;
 				std::cout << "-----------------------------------------" << std::endl;
@@ -187,9 +200,14 @@ namespace apartment {
 	}
 
 	Flat ApartmentDataBase::InputFlatFromUser() {
+		std::string street;
 		int num_flat;
 		int kol_rooms;
 		int square;
+
+		std::cout << " ";
+		std::cout << "Введите улицу: ";
+		std::getline(std::cin, street);
 
 		std::cout << "Введите номер квартиры: ";
 		while (true) {
@@ -230,7 +248,7 @@ namespace apartment {
 			}
 		}
 
-		return Flat(num_flat, kol_rooms, square);
+		return Flat(street, num_flat, kol_rooms, square);
 	}
 
 	Concierge ApartmentDataBase::InputConciergeFromUser() {
@@ -281,8 +299,13 @@ namespace apartment {
 	}
 
 	House ApartmentDataBase::InputHouseFromUser() {
+		std::string street;
 		int num_house;
 		int kol_rezidents;
+
+		std::cout << " ";
+		std::cout << "Введите улицу: ";
+		std::getline(std::cin, street);
 
 		std::cout << "Введите номер дома: ";
 		while (true) {
@@ -310,7 +333,7 @@ namespace apartment {
 			}
 		}
 
-		return House(num_house, kol_rezidents);
+		return House(street, num_house, kol_rezidents);
 	}
 
 	bool ApartmentDataBase::IsInteger(const std::string& str) const {

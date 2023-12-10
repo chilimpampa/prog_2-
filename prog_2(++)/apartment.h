@@ -17,12 +17,14 @@ namespace apartment {
 
 	class Flat {
 	private:
+		std::string street;
 		int num_flat;
 		int kol_rooms;
 		int square;
 
 	public:
-		Flat(const int num_flat, int kol_rooms, int square);
+		Flat(const std::string& street, int num_flat, int kol_rooms, int square);
+		std::string GetSTREET() const;
 		int GetNUM_FLAT() const;
 		int GetKOL_ROOMS() const;
 		int GetSQUARE() const;
@@ -52,11 +54,14 @@ namespace apartment {
 
 	class House {
 	private:
+		std::string street;
 		int num_house;
 		int kol_rezidents;
 
 	public:
-		House(const int num_house, int kol_rezidents);
+		House(const std::string& street, int num_house, int kol_rezidents);
+		House(const Flat& flat, int num_house, int kol_rezidents);
+		std::string GetSTREET() const;
 		int GetKOL_REZIDENTS() const;
 		int GetNUM_HOUSE() const;
 	};
